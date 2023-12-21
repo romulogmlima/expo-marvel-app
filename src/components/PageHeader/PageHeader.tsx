@@ -1,7 +1,7 @@
 import React from "react";
+import { Text, View } from "react-native";
 
-import { Box } from "../Box/Box";
-import { Text } from "../Text/Text";
+import { styles } from "./styles";
 
 type PageHeaderProps = {
   title: string;
@@ -9,18 +9,8 @@ type PageHeaderProps = {
 };
 
 export const PageHeader = ({ title, subtitle }: PageHeaderProps): JSX.Element => (
-  <Box
-    height={180}
-    marginBottom="s10"
-    paddingHorizontal="s10"
-    backgroundColor="redError"
-    justifyContent="center"
-    alignItems="center">
-    <Text variant="headingSmall" fontWeight="900" marginBottom="s4">
-      {title}
-    </Text>
-    <Text variant="paragraphSmall" textAlign="center">
-      {subtitle}
-    </Text>
-  </Box>
+  <View style={styles.container}>
+    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.subtitle}>{subtitle}</Text>
+  </View>
 );
