@@ -1,10 +1,9 @@
 import React from "react";
-import { Image } from "react-native";
+import { Image, Text, View } from "react-native";
 
-import { Box } from "../Box/Box";
-import { Text } from "../Text/Text";
+import { styles } from "./styles";
 
-import { ImageVariant } from "@/constants/images";
+import { ImageVariant } from "@/constants";
 import { getImageUri } from "@/helpers";
 import { Comic } from "@/types";
 
@@ -13,14 +12,14 @@ type ComicCardProps = {
 };
 
 export const ComicCard = ({ comic }: ComicCardProps): JSX.Element => (
-  <Box height={260} width={150} marginRight="s10">
+  <View style={styles.container}>
     <Image
       source={{ uri: getImageUri(comic.thumbnail, ImageVariant.PORTRAIT_XLARGE) }}
-      style={{ height: 225 }}
+      style={styles.comicImage}
+      accessibilityRole="image"
     />
-
-    <Text variant="paragraphCaption" color="black">
+    <Text style={styles.title} accessibilityRole="text">
       {comic.title}
     </Text>
-  </Box>
+  </View>
 );
