@@ -38,6 +38,7 @@ export const CharacterDetails = ({ route }: ScreenProps): JSX.Element => {
           <Spinner />
         ) : (
           <FlatList
+            testID="comic-list"
             data={comics}
             keyExtractor={(item) => item.id}
             horizontal
