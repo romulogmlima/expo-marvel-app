@@ -1,5 +1,7 @@
 import { StyleSheet } from "react-native";
 
+import { palette } from "@/themes";
+
 export const styles = StyleSheet.create({
   container: {
     width: 150,
@@ -7,7 +9,7 @@ export const styles = StyleSheet.create({
     marginRight: 8,
   },
   title: {
-    color: "#000000",
+    color: palette.black,
     fontSize: 12,
     lineHeight: 16.8,
   },

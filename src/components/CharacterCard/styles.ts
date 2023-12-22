@@ -1,17 +1,19 @@
 import { StyleSheet } from "react-native";
 
+import { palette } from "@/themes";
+
 export const styles = StyleSheet.create({
   container: {
     width: 160,
     height: 220,
     marginBottom: 8,
     alignItems: "center",
-    backgroundColor: "#000000",
+    backgroundColor: palette.black,
     borderBottomRightRadius: 25,
     borderTopLeftRadius: 25,
   },
   name: {
-    color: "#ffffff",
+    color: palette.white,
     fontSize: 14,
     lineHeight: 19.6,
     fontWeight: "500",
@@ -20,7 +22,7 @@ export const styles = StyleSheet.create({
   divider: {
     width: "100%",
     height: 5,
-    backgroundColor: "#e62429",
+    backgroundColor: palette.alizarinCrimson,
     marginBottom: 4,
   },
   characterImage: {
