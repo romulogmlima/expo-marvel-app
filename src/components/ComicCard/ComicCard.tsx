@@ -17,6 +17,7 @@ export const ComicCard = ({ comic }: ComicCardProps): JSX.Element => (
       source={{ uri: getImageUri(comic.thumbnail, ImageVariant.PORTRAIT_XLARGE) }}
       style={styles.comicImage}
       accessibilityRole="image"
+      testID="comic-image"
     />
     <Text style={styles.title} accessibilityRole="text">
       {comic.title}
