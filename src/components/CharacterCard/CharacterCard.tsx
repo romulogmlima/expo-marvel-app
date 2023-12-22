@@ -26,6 +26,7 @@ export const CharacterCard = ({ character }: CharacterCardProps): JSX.Element =>
         source={{ uri: getImageUri(character.thumbnail, ImageVariant.PORTRAIT_MEDIUM) }}
         style={styles.characterImage}
         accessibilityRole="image"
+        testID="character-image"
       />
       <View style={styles.divider} />
       <Text style={styles.name} accessibilityRole="text">
