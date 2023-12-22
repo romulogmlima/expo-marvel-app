@@ -33,6 +33,7 @@
     "@testing-library/react-native": "^12.4.2",
     "@types/jest": "^29.5.11",
     "@types/react": "~18.2.14",
+    "axios-mock-adapter": "^1.22.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.56.0",
