@@ -1,3 +1,5 @@
+![marvel](https://github.com/romulogmlima/expo-marvel-app/assets/14766255/6e4b0f80-89d6-4554-b244-ac179d460f8a)
+
 #### :large_blue_circle: Descrição do Projeto
 
 Aplicação que permite visualizar uma lista completa dos personagens da Marvel. Além disso, é possível obter uma descrição de cada personagem e uma lista dos quadrinhos nos quais ele aparece.
