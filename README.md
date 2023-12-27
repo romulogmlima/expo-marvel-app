@@ -10,6 +10,7 @@ Aplicação que permite visualizar uma lista completa dos personagens da Marvel.
 - **[Expo](https://expo.dev/)**
 - **[Axios](https://axios-http.com/)**
 - **[React Navigation](https://reactnavigation.org/)**
+- **[TanStack Query](https://tanstack.com/query/latest/docs/react/overview)**
 
 #### :wrench: Dependências de desenvolvimento
 
