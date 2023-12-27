@@ -1,24 +1,15 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
-import { api } from "@/services/api";
-import { Comic } from "@/types";
+import { comicService } from "@/domain/Comic/comicService";
 
 export const useComics = (characterId: number) => {
-  const [comics, setComics] = useState<Comic[]>([]);
-  const [loadingComics, setLoadingComics] = useState<boolean>(false);
-
-  useEffect(() => {
-    (async () => {
-      setLoadingComics(true);
-      const response = await api.get(`/characters/${characterId}/comics`);
-
-      setComics(response.data.data.results);
-      setLoadingComics(false);
-    })();
-  }, []);
+  const { data, isLoading } = useQuery({
+    queryKey: ["comics", characterId],
+    queryFn: () => comicService.getComicsByCharacterId(characterId),
+  });
 
   return {
-    comics,
-    loadingComics,
+    comics: data?.data.results,
+    loadingComics: isLoading,
   };
 };

@@ -1,46 +1,41 @@
-import { useState } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
-import { api } from "@/services/api";
+import { characterService } from "@/domain/Character/characterService";
 import { Character } from "@/types";
 
 export const useCharacters = () => {
-  const [hasMoreData, setHasMoreData] = useState(true);
-  const [isRefreshing, setRefreshing] = useState(false);
-  const [listCharacters, setListCharacters] = useState<Character[]>([]);
-  const [offset, setOffset] = useState(0);
+  const [list, setList] = useState<Character[]>([]);
   const limit = 50;
 
-  async function onRefresh() {
-    setRefreshing(true);
-    setListCharacters([]);
-    setOffset(0);
-    setHasMoreData(true);
-    setRefreshing(false);
-  }
+  const { data, hasNextPage, fetchNextPage, isLoading, isFetching, refetch } = useInfiniteQuery({
+    queryKey: ["characters"],
+    queryFn: ({ pageParam }) => {
+      console.log("[pageParams]: ", pageParam);
+      return characterService.getList({ limit, offset: pageParam });
+    },
+    getNextPageParam: (lastPage) => {
+      const offset = lastPage?.data.offset;
+      const total = lastPage?.data.total;
+      return offset + limit > total ? undefined : offset + limit;
+    },
+  });
 
-  async function fetchCharacters() {
-    if (!hasMoreData) return;
-
-    const url = `/characters?limit=${limit}&offset=${offset};`;
-    const { data } = await api.get(url);
-
-    const current = data.data.results;
-    const total = data.data.total;
-
-    setListCharacters((prev) => [...prev, ...current]);
-
-    if (offset + limit > total) {
-      setHasMoreData(false);
-    } else {
-      setOffset((prev) => prev + limit);
+  useEffect(() => {
+    if (data) {
+      const newList = data.pages.reduce<Character[]>((prev, curr) => {
+        return [...prev, ...curr.data.results];
+      }, []);
+      setList(newList);
     }
-  }
+  }, [data]);
 
   return {
-    isRefreshing,
-    onRefresh,
-    fetchCharacters,
-    hasMoreData,
-    listCharacters,
+    isRefreshing: isLoading,
+    isFetching,
+    fetchNextPage,
+    hasNextPage,
+    listCharacters: list,
+    refetch,
   };
 };
